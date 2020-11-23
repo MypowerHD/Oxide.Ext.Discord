@@ -1,11 +1,16 @@
-﻿namespace Oxide.Ext.Discord.DiscordEvents
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordEvents
 {
     public class TypingStart
     {
-        public string channel_id { get; set; }
-        
-        public string user_id { get; set; }
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
 
-        public int? timestamp { get; set; }
+        [JsonProperty("user_id")]
+        public string UserId { get; set; }
+
+        [JsonProperty("timestamp")]
+        public int? Timestamp { get; set; }
     }
 }

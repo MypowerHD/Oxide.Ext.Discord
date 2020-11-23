@@ -254,7 +254,7 @@ namespace Oxide.Ext.Discord
                 Token = this.Settings.ApiToken,
                 Properties = new Properties()
                 {
-                    OS = "Oxide.Ext.Discord",
+                    Os = "Oxide.Ext.Discord",
                     Browser = "Oxide.Ext.Discord",
                     Device = "Oxide.Ext.Discord"
                 },

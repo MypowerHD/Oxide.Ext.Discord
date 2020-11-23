@@ -1,9 +1,13 @@
-﻿namespace Oxide.Ext.Discord.DiscordEvents
-{
-    public class WebhooksUpdate
-    {
-        public string guild_id { get; set; }
+﻿using Newtonsoft.Json;
 
-        public string channel_id { get; set; }
+namespace Oxide.Ext.Discord.DiscordEvents
+{
+    public class WebHooksUpdate
+    {
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
+
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
     }
 }

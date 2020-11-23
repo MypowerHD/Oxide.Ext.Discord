@@ -19,7 +19,7 @@
         public List<Guild> Guilds { get; set; }
 
         [JsonProperty("session_id")]
-        public string SessionID { get; set; }
+        public string SessionId { get; set; }
 
         [JsonProperty("_trace")]
         public string[] Trace { get; set; }

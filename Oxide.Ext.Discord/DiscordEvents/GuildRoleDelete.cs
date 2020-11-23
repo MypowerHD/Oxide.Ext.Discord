@@ -1,9 +1,13 @@
-﻿namespace Oxide.Ext.Discord.DiscordEvents
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordEvents
 {
     public class GuildRoleDelete
     {
-        public string guild_id { get; set; }
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
 
-        public string role_id { get; set; }
+        [JsonProperty("role_id")]
+        public string RoleId { get; set; }
     }
 }

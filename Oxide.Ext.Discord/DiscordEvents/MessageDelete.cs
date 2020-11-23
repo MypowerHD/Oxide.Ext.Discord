@@ -1,9 +1,13 @@
-﻿namespace Oxide.Ext.Discord.DiscordEvents
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordEvents
 {
     public class MessageDelete
     {
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string channel_id { get; set; }
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
     }
 }

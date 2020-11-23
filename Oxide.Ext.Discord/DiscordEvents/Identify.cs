@@ -28,7 +28,7 @@
     public class Properties
     {
         [JsonProperty("$os")]
-        public string OS;
+        public string Os;
 
         [JsonProperty("$browser")]
         public string Browser;

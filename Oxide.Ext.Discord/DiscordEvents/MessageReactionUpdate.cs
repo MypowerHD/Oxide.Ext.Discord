@@ -1,15 +1,21 @@
-﻿namespace Oxide.Ext.Discord.DiscordEvents
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordEvents
 {
     using Oxide.Ext.Discord.DiscordObjects;
 
     public class MessageReactionUpdate
     {
-        public string user_id { get; set; }
+        [JsonProperty("user_id")]
+        public string UserId { get; set; }
 
-        public string channel_id { get; set; }
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
 
-        public string message_id { get; set; }
+        [JsonProperty("message_id")]
+        public string MessageId { get; set; }
 
-        public Emoji emoji { get; set; }
+        [JsonProperty("emoji")]
+        public Emoji Emoji { get; set; }
     }
 }

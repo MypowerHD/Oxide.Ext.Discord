@@ -1,9 +1,13 @@
-﻿namespace Oxide.Ext.Discord.DiscordEvents
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordEvents
 {
     public class ChannelPinsUpdate
     {
-        public string channel_id { get; set; }
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
 
-        public string last_pin_timestamp { get; set; }
+        [JsonProperty("last_pin_timestamp")]
+        public string LastPinTimestamp { get; set; }
     }
 }

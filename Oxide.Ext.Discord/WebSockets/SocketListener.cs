@@ -182,7 +182,7 @@ namespace Oxide.Ext.Discord.WebSockets
                             }
 
                             client.DiscordServers = ready.Guilds;
-                            client.SessionID = ready.SessionID;
+                            client.SessionID = ready.SessionId;
                             
                             client.CallHook("Discord_Ready", null, ready);
                             break;
@@ -329,7 +329,7 @@ namespace Oxide.Ext.Discord.WebSockets
                             GuildMemberAdd memberAdded = payload.EventData.ToObject<GuildMemberAdd>();
                             GuildMember guildMember = memberAdded as GuildMember;
 
-                            client.GetGuild(memberAdded.guild_id)?.Members.Add(guildMember);
+                            client.GetGuild(memberAdded.GuildId)?.Members.Add(guildMember);
 
                             client.CallHook("Discord_MemberAdded", null, guildMember);
                             break;
@@ -339,10 +339,10 @@ namespace Oxide.Ext.Discord.WebSockets
                         {
                             GuildMemberRemove memberRemoved = payload.EventData.ToObject<GuildMemberRemove>();
 
-                            GuildMember member = client.GetGuild(memberRemoved.guild_id)?.Members.FirstOrDefault(x => x.User.Id == memberRemoved.user.Id);
+                            GuildMember member = client.GetGuild(memberRemoved.GuildId)?.Members.FirstOrDefault(x => x.User.Id == memberRemoved.User.Id);
                             if (member != null)
                             {
-                                client.GetGuild(memberRemoved.guild_id)?.Members.Remove(member);
+                                client.GetGuild(memberRemoved.GuildId)?.Members.Remove(member);
                             }
 
                             client.CallHook("Discord_MemberRemoved", null, member);
@@ -353,16 +353,16 @@ namespace Oxide.Ext.Discord.WebSockets
                         {
                             GuildMemberUpdate memberUpdated = payload.EventData.ToObject<GuildMemberUpdate>();
 
-                            GuildMember newMember = client.GetGuild(memberUpdated.guild_id)?.Members.FirstOrDefault(x => x.User.Id == memberUpdated.user.Id);
+                            GuildMember newMember = client.GetGuild(memberUpdated.GuildId)?.Members.FirstOrDefault(x => x.User.Id == memberUpdated.User.Id);
                             GuildMember oldMember = Newtonsoft.Json.Linq.JObject.FromObject(newMember).ToObject<GuildMember>(); // lazy way to copy the object
                             if (newMember != null)
                             {
-                                if (memberUpdated.user != null)
-                                    newMember.User = memberUpdated.user;
-                                if (memberUpdated.nick != null)
-                                    newMember.Nick = memberUpdated.nick;
-                                if (memberUpdated.roles != null)
-                                    newMember.Roles = memberUpdated.roles;
+                                if (memberUpdated.User != null)
+                                    newMember.User = memberUpdated.User;
+                                if (memberUpdated.Nick != null)
+                                    newMember.Nick = memberUpdated.Nick;
+                                if (memberUpdated.Roles != null)
+                                    newMember.Roles = memberUpdated.Roles;
                             }
 
                             client.CallHook("Discord_GuildMemberUpdate", null, memberUpdated, oldMember);
@@ -380,24 +380,24 @@ namespace Oxide.Ext.Discord.WebSockets
                         {
                             GuildRoleCreate guildRoleCreate = payload.EventData.ToObject<GuildRoleCreate>();
 
-                            client.GetGuild(guildRoleCreate.guild_id)?.Roles.Add(guildRoleCreate.role);
+                            client.GetGuild(guildRoleCreate.GuildId)?.Roles.Add(guildRoleCreate.Role);
 
-                            client.CallHook("Discord_GuildRoleCreate", null, guildRoleCreate.role);
+                            client.CallHook("Discord_GuildRoleCreate", null, guildRoleCreate.Role);
                             break;
                         }
 
                         case "GUILD_ROLE_UPDATE":
                         {
                             GuildRoleUpdate guildRoleUpdate = payload.EventData.ToObject<GuildRoleUpdate>();
-                            Role newRole = guildRoleUpdate.role;
+                            Role newRole = guildRoleUpdate.Role;
 
-                            Role oldRole = client.GetGuild(guildRoleUpdate.guild_id).Roles.FirstOrDefault(x => x.Id == newRole.Id);
+                            Role oldRole = client.GetGuild(guildRoleUpdate.GuildId).Roles.FirstOrDefault(x => x.Id == newRole.Id);
                             if (oldRole != null)
                             {
-                                client.GetGuild(guildRoleUpdate.guild_id).Roles.Remove(oldRole);
+                                client.GetGuild(guildRoleUpdate.GuildId).Roles.Remove(oldRole);
                             }
 
-                            client.GetGuild(guildRoleUpdate.guild_id).Roles.Add(newRole);
+                            client.GetGuild(guildRoleUpdate.GuildId).Roles.Add(newRole);
 
                             client.CallHook("Discord_GuildRoleUpdate", null, newRole, oldRole);
                             break;
@@ -407,10 +407,10 @@ namespace Oxide.Ext.Discord.WebSockets
                         {
                             GuildRoleDelete guildRoleDelete = payload.EventData.ToObject<GuildRoleDelete>();
 
-                            Role deletedRole = client.GetGuild(guildRoleDelete.guild_id)?.Roles.FirstOrDefault(x => x.Id == guildRoleDelete.role_id);
+                            Role deletedRole = client.GetGuild(guildRoleDelete.GuildId)?.Roles.FirstOrDefault(x => x.Id == guildRoleDelete.RoleId);
                             if (deletedRole != null)
                             {
-                                client.GetGuild(guildRoleDelete.guild_id).Roles.Remove(deletedRole);
+                                client.GetGuild(guildRoleDelete.GuildId).Roles.Remove(deletedRole);
                             }
 
                             client.CallHook("Discord_GuildRoleDelete", null, deletedRole);
@@ -485,11 +485,11 @@ namespace Oxide.Ext.Discord.WebSockets
                         {
                             PresenceUpdate presenceUpdate = payload.EventData.ToObject<PresenceUpdate>();
 
-                            User updatedPresence = presenceUpdate?.user;
+                            User updatedPresence = presenceUpdate?.User;
 
                             if (updatedPresence != null)
                             {
-                                var updatedMember = client.GetGuild(presenceUpdate.guild_id)?.Members.FirstOrDefault(x => x.User.Id == updatedPresence.Id);
+                                var updatedMember = client.GetGuild(presenceUpdate.GuildId)?.Members.FirstOrDefault(x => x.User.Id == updatedPresence.Id);
 
                                 if (updatedMember != null)
                                 {
@@ -548,8 +548,8 @@ namespace Oxide.Ext.Discord.WebSockets
 
                         case "WEBHOOKS_UPDATE":
                         {
-                            WebhooksUpdate webhooksUpdate = payload.EventData.ToObject<WebhooksUpdate>();
-                            client.CallHook("Discord_WebhooksUpdate", null, webhooksUpdate);
+                            WebHooksUpdate webHooksUpdate = payload.EventData.ToObject<WebHooksUpdate>();
+                            client.CallHook("Discord_WebhooksUpdate", null, webHooksUpdate);
                             break;
                         }
 

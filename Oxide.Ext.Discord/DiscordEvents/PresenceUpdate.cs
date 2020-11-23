@@ -1,18 +1,25 @@
-﻿namespace Oxide.Ext.Discord.DiscordEvents
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordEvents
 {
     using System.Collections.Generic;
     using Oxide.Ext.Discord.DiscordObjects;
 
     public class PresenceUpdate
     {
-        public User user { get; set; }
+        [JsonProperty("user")]
+        public User User { get; set; }
 
-        public List<string> roles { get; set; }
+        [JsonProperty("roles")]
+        public List<string> Roles { get; set; }
 
-        public Game game { get; set; }
+        [JsonProperty("game")]
+        public Game Game { get; set; }
 
-        public string guild_id { get; set; }
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
 
-        public string status { get; set; }
+        [JsonProperty("status")]
+        public string Status { get; set; }
     }
 }

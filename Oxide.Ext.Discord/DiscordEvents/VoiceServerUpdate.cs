@@ -2,10 +2,13 @@
 {
     public class VoiceServerUpdate
     {
-        public string token { get; set; }
+        [JsonProperty("token")]
+        public string Token { get; set; }
 
-        public string guild_id { get; set; }
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
 
-        public string endpoint { get; set; }
+        [JsonProperty("endpoint")]
+        public string Endpoint { get; set; }
     }
 }

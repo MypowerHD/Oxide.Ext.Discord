@@ -1,9 +1,13 @@
-﻿namespace Oxide.Ext.Discord.DiscordEvents
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordEvents
 {
     public class MessageReactionRemoveAll
     {
-        public string channel_id { get; set; }
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
 
-        public string message_id { get; set; }
+        [JsonProperty("message_id")]
+        public string MessageId { get; set; }
     }
 }
