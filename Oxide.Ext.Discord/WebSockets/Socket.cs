@@ -10,7 +10,7 @@
 
         private WebSocket socket;
 
-        private SocketListner listner;
+        private SocketListener _listener;
 
         public bool hasConnectedOnce = false;
 
@@ -36,13 +36,13 @@
 
             socket = new WebSocket($"{url}/?v=6&encoding=json");
 
-            if(listner == null)
-                listner = new SocketListner(client, this);
+            if(_listener == null)
+                _listener = new SocketListener(client, this);
 
-            socket.OnOpen += listner.SocketOpened;
-            socket.OnClose += listner.SocketClosed;
-            socket.OnError += listner.SocketErrored;
-            socket.OnMessage += listner.SocketMessage;
+            socket.OnOpen += _listener.SocketOpened;
+            socket.OnClose += _listener.SocketClosed;
+            socket.OnError += _listener.SocketErrored;
+            socket.OnMessage += _listener.SocketMessage;
 
             socket.ConnectAsync();
         }
@@ -56,7 +56,7 @@
 
         public void Dispose()
         {
-            listner = null;
+            _listener = null;
             socket = null;
         }
 
