@@ -1,4 +1,6 @@
-﻿namespace Oxide.Ext.Discord.DiscordEvents
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordEvents
 {
     public class VoiceServerUpdate
     {
