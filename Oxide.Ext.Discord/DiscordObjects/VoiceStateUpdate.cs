@@ -1,14 +1,15 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using Newtonsoft.Json;
 
     public class VoiceStateUpdate
     {
         [JsonProperty("guild_id")]
-        public string GuildID;
+        public string GuildId;
 
         [JsonProperty("channel_id")]
-        public string ChannelID;
+        public string ChannelId;
 
         [JsonProperty("self_mute")]
         public bool SelfMute;

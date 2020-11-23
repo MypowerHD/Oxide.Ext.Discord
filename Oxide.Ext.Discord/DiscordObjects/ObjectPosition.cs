@@ -1,9 +1,13 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class ObjectPosition
     {
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public int position { get; set; }
+        [JsonProperty("position")]
+        public int Position { get; set; }
     }
 }

@@ -1,11 +1,16 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class Reaction
     {
-        public int? count { get; set; }
+        [JsonProperty("count")]
+        public int? Count { get; set; }
 
-        public bool? me { get; set; }
+        [JsonProperty("me")]
+        public bool? Me { get; set; }
 
-        public Emoji emoji { get; set; }
+        [JsonProperty("emoji")]
+        public Emoji Emoji { get; set; }
     }
 }

@@ -1,23 +1,34 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class VoiceState
     {
-        public string guild_id { get; set; }
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
 
-        public string channel_id { get; set; }
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
 
-        public string user_id { get; set; }
+        [JsonProperty("user_id")]
+        public string UserId { get; set; }
 
-        public string session_id { get; set; }
+        [JsonProperty("session_id")]
+        public string SessionId { get; set; }
 
-        public bool deaf { get; set; }
+        [JsonProperty("deaf")]
+        public bool Deaf { get; set; }
 
-        public bool mute { get; set; }
+        [JsonProperty("mute")]
+        public bool Mute { get; set; }
 
-        public bool self_deal { get; set; }
+        [JsonProperty("self_deal")]
+        public bool SelfDeal { get; set; }
 
-        public bool self_mute { get; set; }
+        [JsonProperty("self_mute")]
+        public bool SelfMute { get; set; }
 
-        public bool suppress { get; set; }
+        [JsonProperty("suppress")]
+        public bool Suppress { get; set; }
     }
 }

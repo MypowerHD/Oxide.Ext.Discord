@@ -1,19 +1,27 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using System.Collections.Generic;
 
     public class GuildMember
     {
-        public User user { get; set; }
+        [JsonProperty("user")]
+        public User User { get; set; }
 
-        public string nick { get; set; }
+        [JsonProperty("nick")]
+        public string Nick { get; set; }
 
-        public List<string> roles { get; set; }
+        [JsonProperty("roles")]
+        public List<string> Roles { get; set; }
 
-        public string joined_at { get; set; }
+        [JsonProperty("joined_at")]
+        public string JoinedAt { get; set; }
 
-        public bool deaf { get; set; }
+        [JsonProperty("deaf")]
+        public bool Deaf { get; set; }
 
-        public bool mute { get; set; }
+        [JsonProperty("mute")]
+        public bool Mute { get; set; }
     }
 }

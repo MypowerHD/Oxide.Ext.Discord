@@ -1,6 +1,7 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using Newtonsoft.Json;
 
     public class Presence
     {
@@ -14,6 +15,6 @@
         public int? Since { get; set; }
 
         [JsonProperty("afk")]
-        public bool AFK { get; set; }
+        public bool Afk { get; set; }
     }
 }

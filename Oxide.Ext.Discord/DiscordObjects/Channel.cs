@@ -1,98 +1,123 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using Oxide.Ext.Discord.REST;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using System;
-    using System.Collections.Generic;
-    using Oxide.Ext.Discord.REST;
 
     public class Channel
     {
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public ChannelType? type { get; set; }
+        [JsonProperty("type")]
+        public ChannelType? Type { get; set; }
 
-        public string guild_id { get; set; }
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
 
-        public int? position { get; set; }
+        [JsonProperty("position")]
+        public int? Position { get; set; }
 
-        public List<Overwrite> permission_overwrites { get; set; }
+        [JsonProperty("permission_overwrites")]
+        public List<Overwrite> PermissionOverwrites { get; set; }
 
-        public string name { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-        public string topic { get; set; }
+        [JsonProperty("topic")]
+        public string Topic { get; set; }
 
-        public bool? nsfw { get; set; }
+        [JsonProperty("nsfw")]
+        [DefaultValue(false)]
+        public bool Nsfw { get; set; }
 
-        public string last_message_id { get; set; }
+        [JsonProperty("last_message_id")]
+        public string LastMessageId { get; set; }
 
-        public int? bitrate { get; set; }
+        [JsonProperty("bitrate")]
+        [DefaultValue(0)]
+        public int BitRate { get; set; }
 
-        public int? user_limit { get; set; }
+        [JsonProperty("user_limit")]
+        [DefaultValue(0)]
+        public int UserLimit { get; set; }
 
-        public int? rate_limit_per_user { get; set; }
+        [JsonProperty("rate_limit_per_user")]
+        [DefaultValue(0)]
+        public int RateLimitPerUser { get; set; }
 
-        public List<User> recipients { get; set; }
+        [JsonProperty("recipients")]
+        public List<User> Recipients { get; set; }
 
-        public string icon { get; set; }
+        [JsonProperty("icon")]
+        public string Icon { get; set; }
 
-        public string owner_id { get; set; }
+        [JsonProperty("owner_id")]
+        public string OwnerId { get; set; }
 
-        public string application_id { get; set; }
+        [JsonProperty("application_id")]
+        public string ApplicationId { get; set; }
 
-        public string parent_id { get; set; }
+        [JsonProperty("parent_id")]
+        public string ParentId { get; set; }
 
+        [JsonProperty("last_pin_timestamp")]
         // TODO: Parse to DateTime
-        public string last_pin_timestamp { get; set; } 
+        public string LastPinTimestamp { get; set; } 
 
-        public static void GetChannel(DiscordClient client, string channelID, Action<Channel> callback = null)
+        public static void GetChannel(DiscordClient client, string channelId, Action<Channel> callback = null)
         {
-            client.REST.DoRequest($"/channels/{channelID}", RequestMethod.GET, null, callback);
+            client.REST.DoRequest($"/channels/{channelId}", RequestMethod.GET, null, callback);
         }
 
         public void ModifyChannel(DiscordClient client, Channel newChannel, Action<Channel> callback = null)
         {
-            client.REST.DoRequest($"/channels/{id}", RequestMethod.PATCH, newChannel, callback);
+            client.REST.DoRequest($"/channels/{Id}", RequestMethod.PATCH, newChannel, callback);
         }
 
         public void DeleteChannel(DiscordClient client, Action<Channel> callback = null)
         {
-            client.REST.DoRequest($"/channels/{id}", RequestMethod.DELETE, null, callback);
+            client.REST.DoRequest($"/channels/{Id}", RequestMethod.DELETE, null, callback);
         }
 
         public void GetChannelMessages(DiscordClient client, Action<List<Message>> callback = null)
         {
-            client.REST.DoRequest($"/channels/{id}/messages", RequestMethod.GET, null, callback);
+            client.REST.DoRequest($"/channels/{Id}/messages", RequestMethod.GET, null, callback);
         }
 
-        public void GetChannelMessage(DiscordClient client, Message message, Action<Message> callback = null) => GetChannelMessage(client, message.id, callback);
+        public void GetChannelMessage(DiscordClient client, Message message, Action<Message> callback = null) => GetChannelMessage(client, message.Id, callback);
 
-        public void GetChannelMessage(DiscordClient client, string messageID, Action<Message> callback = null)
+        public void GetChannelMessage(DiscordClient client, string messageId, Action<Message> callback = null)
         {
-            client.REST.DoRequest($"/channels/{id}/messages/{messageID}", RequestMethod.GET, null, callback);
+            client.REST.DoRequest($"/channels/{Id}/messages/{messageId}", RequestMethod.GET, null, callback);
         }
 
         public void CreateMessage(DiscordClient client, Message message, Action<Message> callback = null)
         {
-            client.REST.DoRequest($"/channels/{id}/messages", RequestMethod.POST, message, callback);
+            client.REST.DoRequest($"/channels/{Id}/messages", RequestMethod.POST, message, callback);
         }
 
         public void CreateMessage(DiscordClient client, string message, Action<Message> callback = null)
         {
             Message createMessage = new Message()
             {
-                content = message
+                Content = message
             };
 
-            client.REST.DoRequest($"/channels/{id}/messages", RequestMethod.POST, createMessage, callback);
+            client.REST.DoRequest($"/channels/{Id}/messages", RequestMethod.POST, createMessage, callback);
         }
 
         public void CreateMessage(DiscordClient client, Embed embed, Action<Message> callback = null)
         {
             Message createMessage = new Message()
             {
-                embed = embed
+                Embed = embed
             };
 
-            client.REST.DoRequest($"/channels/{id}/messages", RequestMethod.POST, createMessage, callback);
+            client.REST.DoRequest($"/channels/{Id}/messages", RequestMethod.POST, createMessage, callback);
         }
 
         public void BulkDeleteMessages(DiscordClient client, string[] messageIds, Action callback = null)
@@ -102,12 +127,12 @@
                 { "messages", messageIds }
             };
 
-            client.REST.DoRequest($"/channels/{id}/messages/bulk-delete", RequestMethod.POST, jsonObj, callback);
+            client.REST.DoRequest($"/channels/{Id}/messages/bulk-delete", RequestMethod.POST, jsonObj, callback);
         }
 
-        public void EditChannelPermissions(DiscordClient client, Overwrite overwrite, int? allow, int? deny, string type) => EditChannelPermissions(client, overwrite.id, allow, deny, type);
+        public void EditChannelPermissions(DiscordClient client, Overwrite overwrite, int? allow, int? deny, string type) => EditChannelPermissions(client, overwrite.Id, allow, deny, type);
 
-        public void EditChannelPermissions(DiscordClient client, string overwriteID, int? allow, int? deny, string type, Action callback = null)
+        public void EditChannelPermissions(DiscordClient client, string overwriteId, int? allow, int? deny, string type, Action callback = null)
         {
             var jsonObj = new Dictionary<string, object>()
             {
@@ -116,47 +141,47 @@
                 { "type", type }
             };
 
-            client.REST.DoRequest($"/channels/{id}/permissions/{overwriteID}", RequestMethod.PUT, jsonObj, callback);
+            client.REST.DoRequest($"/channels/{Id}/permissions/{overwriteId}", RequestMethod.PUT, jsonObj, callback);
         }
 
         public void GetChannelInvites(DiscordClient client, Action<List<Invite>> callback = null)
         {
-            client.REST.DoRequest($"/channels/{id}/invites", RequestMethod.GET, null, callback);
+            client.REST.DoRequest($"/channels/{Id}/invites", RequestMethod.GET, null, callback);
         }
 
-        public void CreateChannelInvite(DiscordClient client, Action<Invite> callback = null, int? max_age = 86400, int? max_uses = 0, bool temporary = false, bool unique = false)
+        public void CreateChannelInvite(DiscordClient client, Action<Invite> callback = null, int? maxAge = 86400, int? maxUses = 0, bool temporary = false, bool unique = false)
         {
             var jsonObj = new Dictionary<string, object>()
             {
-                { "max_age", max_age },
-                { "max_uses", max_uses },
+                { "max_age", maxAge },
+                { "max_uses", maxUses },
                 { "temporary", temporary },
                 { "unique", unique }
             };
 
-            client.REST.DoRequest<Invite>($"/channels/{id}/invites", RequestMethod.POST, jsonObj, callback);
+            client.REST.DoRequest<Invite>($"/channels/{Id}/invites", RequestMethod.POST, jsonObj, callback);
         }
 
-        public void DeleteChannelPermission(DiscordClient client, Overwrite overwrite, Action callback) => DeleteChannelPermission(client, overwrite.id, callback);
+        public void DeleteChannelPermission(DiscordClient client, Overwrite overwrite, Action callback) => DeleteChannelPermission(client, overwrite.Id, callback);
 
-        public void DeleteChannelPermission(DiscordClient client, string overwriteID, Action callback)
+        public void DeleteChannelPermission(DiscordClient client, string overwriteId, Action callback)
         {
-            client.REST.DoRequest($"/channels/{id}/permissions/{overwriteID}", RequestMethod.DELETE, null, callback);
+            client.REST.DoRequest($"/channels/{Id}/permissions/{overwriteId}", RequestMethod.DELETE, null, callback);
         }
 
         public void TriggerTypingIndicator(DiscordClient client, Action callback)
         {
-            client.REST.DoRequest($"/channels/{id}/typing", RequestMethod.POST, null, callback);
+            client.REST.DoRequest($"/channels/{Id}/typing", RequestMethod.POST, null, callback);
         }
 
         public void GetPinnedMessages(DiscordClient client, Action<List<Message>> callback = null)
         {
-            client.REST.DoRequest<List<Message>>($"/channels/{id}/pins", RequestMethod.GET, null, callback);
+            client.REST.DoRequest<List<Message>>($"/channels/{Id}/pins", RequestMethod.GET, null, callback);
         }
 
-        public void GroupDMAddRecipient(DiscordClient client, User user, string accessToken, Action callback = null) => GroupDMAddRecipient(client, user.id, accessToken, user.username, callback);
+        public void GroupDmAddRecipient(DiscordClient client, User user, string accessToken, Action callback = null) => GroupDmAddRecipient(client, user.Id, accessToken, user.Username, callback);
 
-        public void GroupDMAddRecipient(DiscordClient client, string userID, string accessToken, string nick, Action callback = null)
+        public void GroupDmAddRecipient(DiscordClient client, string userId, string accessToken, string nick, Action callback = null)
         {
             var jsonObj = new Dictionary<string, string>()
             {
@@ -164,12 +189,12 @@
                 { "nick", nick }
             };
 
-            client.REST.DoRequest($"/channels/{id}/recipients/{userID}", RequestMethod.PUT, jsonObj, callback);
+            client.REST.DoRequest($"/channels/{Id}/recipients/{userId}", RequestMethod.PUT, jsonObj, callback);
         }
 
-        public void GroupDMRemoveRecipient(DiscordClient client, string userID, Action callback)
+        public void GroupDmRemoveRecipient(DiscordClient client, string userId, Action callback)
         {
-            client.REST.DoRequest($"/channels/{id}/recipients/{userID}", RequestMethod.DELETE, null, callback);
+            client.REST.DoRequest($"/channels/{Id}/recipients/{userId}", RequestMethod.DELETE, null, callback);
         }
     }
 }

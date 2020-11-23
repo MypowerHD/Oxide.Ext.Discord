@@ -1,22 +1,27 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Oxide.Ext.Discord.REST;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using System;
-    using System.Collections.Generic;
-    using Oxide.Ext.Discord.REST;
 
     public class AuditLog
     {
-        public List<Webhook> webhooks { get; set; }
+        [JsonProperty("webhooks")]
+        public List<Webhook> WebHooks { get; set; }
 
-        public List<User> users { get; set; }
+        [JsonProperty("users")]
+        public List<User> Users { get; set; }
+        
+        [JsonProperty("audit_log_entries")]
+        public List<AuditLogEntry> AuditLogEntries { get; set; }
 
-        public List<AuditLogEntry> audit_log_entries { get; set; }
-
-        public static void GetGuildAuditLog(DiscordClient client, Guild guild, Action<AuditLog> callback = null) => GetGuildAuditLog(client, guild.id, callback);
-
-        public static void GetGuildAuditLog(DiscordClient client, string guildID, Action<AuditLog> callback = null)
+        public static void GetGuildAuditLog(DiscordClient client, Guild guild, Action<AuditLog> callback = null) => GetGuildAuditLog(client, guild.Id, callback);
+        
+        public static void GetGuildAuditLog(DiscordClient client, string guildId, Action<AuditLog> callback = null)
         {
-            client.REST.DoRequest($"/guilds/{guildID}/audit-logs", RequestMethod.GET, null, callback);
+            client.REST.DoRequest($"/guilds/{guildId}/audit-logs", RequestMethod.GET, null, callback);
         }
     }
 }

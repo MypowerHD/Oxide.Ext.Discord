@@ -1,23 +1,34 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class Role
     {
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string name { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-        public int? color { get; set; }
+        [JsonProperty("color")]
+        public int? Color { get; set; }
 
-        public bool? hoist { get; set; }
+        [JsonProperty("hoist")]
+        public bool? Hoist { get; set; }
 
-        public int? position { get; set; }
+        [JsonProperty("position")]
+        public int? Position { get; set; }
 
-        public int? permissions { get; set; }
+        [JsonProperty("permissions")]
+        public int? Permissions { get; set; }
 
-        public bool? managed { get; set; }
+        [JsonProperty("managed")]
+        public bool? Managed { get; set; }
 
-        public bool? mentionable { get; set; }
+        [JsonProperty("mentionable")]
+        public bool? Mentionable { get; set; }
 
-        public string guild_id { get; set; }
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
     }
 }

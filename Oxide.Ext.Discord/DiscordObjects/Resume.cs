@@ -1,6 +1,7 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using Newtonsoft.Json;
 
     public class Resume
     {
@@ -8,7 +9,7 @@
         public string Token;
 
         [JsonProperty("session_id")]
-        public string SessionID;
+        public string SessionId;
 
         [JsonProperty("seq")]
         public int Sequence;

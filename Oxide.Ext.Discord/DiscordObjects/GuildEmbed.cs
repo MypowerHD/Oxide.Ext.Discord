@@ -1,9 +1,13 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class GuildEmbed
     {
-        public bool enabled { get; set; }
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
 
-        public string channel_id { get; set; }
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
     }
 }

@@ -1,9 +1,13 @@
+using Newtonsoft.Json;
+
 namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class BanObject
     {
-        public User user { get; set; }
-        
-        public string guild_id { get; set; }
+        [JsonProperty("user")]
+        public User User { get; set; }
+
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
     }
 }

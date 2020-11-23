@@ -1,13 +1,17 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using System.Collections.Generic;
 
     public class Nick
     {
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string nick { get; set; }
+        [JsonProperty("nick")]
+        public string Username { get; set; }
      
-        public static implicit operator KeyValuePair<string, string>(Nick nick) => new KeyValuePair<string, string>(nick.id, nick.nick);
+        public static implicit operator KeyValuePair<string, string>(Nick nick) => new KeyValuePair<string, string>(nick.Id, nick.Username);
     }
 }

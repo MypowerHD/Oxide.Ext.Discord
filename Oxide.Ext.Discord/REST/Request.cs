@@ -196,7 +196,7 @@
             {
                 var limit = response.ParseData<RateLimit>();
 
-                if (limit.global)
+                if (limit.Global)
                 {
                     GlobalRateLimit.Reached(rateRetryAfter);
                 }

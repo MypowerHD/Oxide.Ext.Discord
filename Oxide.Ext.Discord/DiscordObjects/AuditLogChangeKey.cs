@@ -1,103 +1,141 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
 
     public class AuditLogChangeKey
     {
         public class Guild
         {
-            public string name { get; set; }
+            [JsonProperty("name")]
+            public string Name { get; set; }
 
-            public string icon_hash { get; set; }
+            [JsonProperty("icon_hash")]
+            public string IconHash { get; set; }
 
-            public string splash_hash { get; set; }
+            [JsonProperty("splash_hash")]
+            public string SplashHash { get; set; }
 
-            public string owner_id { get; set; }
+            [JsonProperty("owner_id")]
+            public string OwnerId { get; set; }
 
-            public string region { get; set; }
+            [JsonProperty("region")]
+            public string Region { get; set; }
 
-            public string afk_channel_id { get; set; }
+            [JsonProperty("afk_channel_id")]
+            public string AfkChannelId { get; set; }
 
-            public int? afk_timeout { get; set; }
+            [JsonProperty("afk_timeout")]
+            public int? AfkTimeout { get; set; }
 
-            public int? mfa_level { get; set; }
+            [JsonProperty("mfa_level")]
+            public int? MfaLevel { get; set; }
 
-            public int? verification_level { get; set; }
+            [JsonProperty("verification_level")]
+            public int? VerificationLevel { get; set; }
 
-            public int? explicit_content_filter { get; set; }
+            [JsonProperty("explicit_content_filter")]
+            public int? ExplicitContentFilter { get; set; }
 
-            public int? default_message_notifications { get; set; }
+            [JsonProperty("default_message_notifications")]
+            public int? DefaultMessageNotifications { get; set; }
 
-            public string vanity_url_code { get; set; }
+            [JsonProperty("vanity_url_code")]
+            public string VanityUrlCode { get; set; }
 
             [JsonProperty(PropertyName = "$add")]
-            public List<Role> add { get; set; }
+            public List<Role> Add { get; set; }
 
             [JsonProperty(PropertyName = "$remove")]
-            public List<Role> remove { get; set; }
+            public List<Role> Remove { get; set; }
 
-            public int? prune_delete_days { get; set; }
+            [JsonProperty("prune_delete_days")]
+            public int? PruneDeleteDays { get; set; }
 
-            public bool widget_enabled { get; set; }
+            [JsonProperty("widget_enabled")]
+            public bool WidgetEnabled { get; set; }
 
-            public string widget_channel_id { get; set; }
+            [JsonProperty("widget_channel_id")]
+            public string WidgetChannelId { get; set; }
         }
 
         public class Channel
         {
-            public int? position { get; set; }
+            [JsonProperty("position")]
+            public int? Position { get; set; }
 
-            public string topic { get; set; }
+            [JsonProperty("topic")]
+            public string Topic { get; set; }
 
-            public int? bitrate { get; set; }
+            [JsonProperty("bitrate")]
+            public int? Bitrate { get; set; }
 
-            public List<Overwrite> permission_overwrites { get; set; }
+            [JsonProperty("permission_overwrites")]
+            public List<Overwrite> PermissionOverwrites { get; set; }
 
-            public bool nsfw { get; set; }
+            [JsonProperty("nsfw")]
+            public bool Nsfw { get; set; }
 
-            public string application_id { get; set; }
+            [JsonProperty("application_id")]
+            public string ApplicationId { get; set; }
         }
 
         public class Role
         {
-            public bool mentionable { get; set; }
+            [JsonProperty("mentionable")]
+            public bool Mentionable { get; set; }
 
-            public int? allow { get; set; }
+            [JsonProperty("allow")]
+            public int? Allow { get; set; }
 
-            public int? deny { get; set; }
+            [JsonProperty("deny")]
+            public int? Deny { get; set; }
         }
 
         public class Invite
         {
-            public string code { get; set; }
+            [JsonProperty("code")]
+            public string Code { get; set; }
 
-            public string channel_id { get; set; }
+            [JsonProperty("channel_id")]
+            public string ChannelId { get; set; }
 
-            public string inviter_id { get; set; }
+            [JsonProperty("inviter_id")]
+            public string InviterId { get; set; }
 
-            public int? max_uses { get; set; }
+            [JsonProperty("max_uses")]
+            public int? MaxUses { get; set; }
 
-            public int? uses { get; set; }
+            [JsonProperty("uses")]
+            public int? Uses { get; set; }
 
-            public int? max_age { get; set; }
+            [JsonProperty("max_age")]
+            public int? MaxAge { get; set; }
 
-            public bool temporary { get; set; }
+            [JsonProperty("temporary")]
+            public bool Temporary { get; set; }
         }
 
         public class User
         {
-            public bool deaf { get; set; }
+            [JsonProperty("deaf")]
+            public bool Deaf { get; set; }
 
-            public bool mute { get; set; }
+            [JsonProperty("mute")]
+            public bool Mute { get; set; }
 
-            public string nick { get; set; }
+            [JsonProperty("nick")]
+            public string Nick { get; set; }
 
-            public string avatar_hash { get; set; }
+            [JsonProperty("avatar_hash")]
+            public string AvatarHash { get; set; }
         }
 
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public int? type { get; set; }
+        [JsonProperty("type")]
+        public int? Type { get; set; }
     }
 }

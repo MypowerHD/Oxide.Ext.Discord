@@ -1,27 +1,40 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class Integration
     {
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string name { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-        public string type { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
-        public bool enabled { get; set; }
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
 
-        public bool syncing { get; set; }
+        [JsonProperty("syncing")]
+        public bool Syncing { get; set; }
 
-        public string role_id { get; set; }
+        [JsonProperty("role_id")]
+        public string RoleId { get; set; }
 
-        public int? expire_behaviour { get; set; }
+        [JsonProperty("expire_behaviour")]
+        public int? ExpireBehaviour { get; set; }
 
-        public int? expire_grace_peroid { get; set; }
+        [JsonProperty("expire_grace_peroid")]
+        public int? ExpireGracePeroid { get; set; }
 
-        public User user { get; set; }
+        [JsonProperty("user")]
+        public User User { get; set; }
 
-        public Account account { get; set; }
+        [JsonProperty("account")]
+        public Account Account { get; set; }
 
-        public string synced_at { get; set; }
+        [JsonProperty("synced_at")]
+        public string SyncedAt { get; set; }
     }
 }

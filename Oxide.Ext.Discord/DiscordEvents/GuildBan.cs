@@ -1,17 +1,27 @@
-﻿namespace Oxide.Ext.Discord.DiscordEvents
+﻿using System.ComponentModel;
+using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordEvents
 {
     public class GuildBan
     {
-        public string username { get; set; }
+        [JsonProperty("username")]
+        public string Username { get; set; }
 
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string discriminator { get; set; }
+        [JsonProperty("discriminator")]
+        public string Discriminator { get; set; }
 
-        public string avatar { get; set; }
+        [JsonProperty("avatar")]
+        public string Avatar { get; set; }
 
-        public bool? bot { get; set; }
+        [JsonProperty("bot")]
+        [DefaultValue(false)]
+        public bool Bot { get; set; }
 
-        public string guild_id { get; set; }
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
     }
 }

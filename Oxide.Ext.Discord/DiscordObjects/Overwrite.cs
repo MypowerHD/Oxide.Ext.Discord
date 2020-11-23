@@ -1,13 +1,19 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class Overwrite
     {
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string type { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
-        public int? allow { get; set; }
+        [JsonProperty("allow")]
+        public int? Allow { get; set; }
 
-        public int? deny { get; set; }
+        [JsonProperty("deny")]
+        public int? Deny { get; set; }
     }
 }

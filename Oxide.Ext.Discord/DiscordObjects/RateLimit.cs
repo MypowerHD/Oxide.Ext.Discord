@@ -1,11 +1,16 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class RateLimit
     {
-        public string message { get; set; }
+        [JsonProperty("message")]
+        public string Message { get; set; }
 
-        public int retry_after { get; set; }
+        [JsonProperty("retry_after")]
+        public int RetryAfter { get; set; }
 
-        public bool global { get; set; }
+        [JsonProperty("global")]
+        public bool Global { get; set; }
     }
 }

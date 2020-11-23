@@ -1,19 +1,28 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class OptionalAuditEntryInfo
     {
-        public string delete_member_days { get; set; }
+        [JsonProperty("delete_member_days")]
+        public string DeleteMemberDays { get; set; }
 
-        public string members_removed { get; set; }
+        [JsonProperty("members_removed")]
+        public string MembersRemoved { get; set; }
 
-        public string channel_id { get; set; }
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
 
-        public string count { get; set; }
+        [JsonProperty("count")]
+        public string Count { get; set; }
 
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string type { get; set; }
-
-        public string role_name { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
+        
+        [JsonProperty("role_name")]
+        public string RoleName { get; set; }
     }
 }

@@ -1,14 +1,17 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using System;
-    using Oxide.Ext.Discord.REST;
 
     public class InviteDeleted
     {
-        public string channel_id { get; set; }
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
 
-        public string guild_id { get; set; }
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
 
-        public string code { get; set; }
+        [JsonProperty("code")]
+        public string Code { get; set; }
     }
 }

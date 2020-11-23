@@ -1,11 +1,16 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
     public class AuditLogChange
     {
-        public AuditLogChangeKey new_value { get; set; }
+        [JsonProperty("new_value")]
+        public AuditLogChangeKey NewValue { get; set; }
 
-        public AuditLogChangeKey old_value { get; set; }
+        [JsonProperty("old_value")]
+        public AuditLogChangeKey OldValue { get; set; }
 
-        public string key { get; set; }
+        [JsonProperty("key")]
+        public string Key { get; set; }
     }
 }

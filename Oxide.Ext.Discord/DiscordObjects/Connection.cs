@@ -1,17 +1,26 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using System.Collections.Generic;
 
     public class Connection
     {
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string name { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-        public string type { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
-        public bool? revoked { get; set; }
+        [JsonProperty("revoked")]
+        [DefaultValue(false)]
+        public bool Revoked { get; set; }
 
-        public List<Integration> integrations { get; set; }
+        [JsonProperty("integrations")]
+        public List<Integration> Integrations { get; set; }
     }
 }

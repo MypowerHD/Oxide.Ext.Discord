@@ -1,11 +1,12 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using Newtonsoft.Json;
 
     public class GuildMembersRequest
     {
         [JsonProperty("guild_id")]
-        public string GuildID { get; set; }
+        public string GuildId { get; set; }
 
         [JsonProperty("query")]
         public string Query { get; set; }

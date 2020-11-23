@@ -1,19 +1,27 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using System.Collections.Generic;
 
     public class WebhookPayload
     {
-        public string content { get; set; }
+        [JsonProperty("content")]
+        public string Content { get; set; }
 
-        public string username { get; set; }
+        [JsonProperty("username")]
+        public string Username { get; set; }
 
-        public string avatar_url { get; set; }
+        [JsonProperty("avatar_url")]
+        public string AvatarUrl { get; set; }
 
-        public bool tts { get; set; }
+        [JsonProperty("tts")]
+        public bool Tts { get; set; }
 
-        public string file { get; set; }
+        [JsonProperty("file")]
+        public string File { get; set; }
 
-        public List<Embed> embeds { get; set; }
+        [JsonProperty("embeds")]
+        public List<Embed> Embeds { get; set; }
     }
 }

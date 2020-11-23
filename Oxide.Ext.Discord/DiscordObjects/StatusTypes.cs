@@ -6,7 +6,7 @@
 
         public const string DoNotDisturb = "dnd";
 
-        public const string AFK = "idle";
+        public const string Afk = "idle";
 
         public const string Invisible = "invisible";
 

@@ -1,26 +1,34 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
-{
-    using System;
-    using Oxide.Ext.Discord.REST;
+﻿using Newtonsoft.Json;
 
+namespace Oxide.Ext.Discord.DiscordObjects
+{
     public class InviteCreated
     {
-        public string channel_id { get; set; }
+        [JsonProperty("channel_id")]
+        public string ChannelId { get; set; }
 
-        public string code { get; set; }
+        [JsonProperty("code")]
+        public string Code { get; set; }
 
-        public string created_at { get; set; }
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
 
-        public string guild_id { get; set; }
+        [JsonProperty("guild_id")]
+        public string GuildId { get; set; }
 
-        public User inviter { get; set; }
+        [JsonProperty("inviter")]
+        public User Inviter { get; set; }
 
-        public int? max_age { get; set; }
+        [JsonProperty("max_age")]
+        public int? MaxAge { get; set; }
 
-        public int? max_uses { get; set; }
+        [JsonProperty("max_uses")]
+        public int? MaxUses { get; set; }
 
-        public bool? temporary { get; set; }
+        [JsonProperty("temporary")]
+        public bool? Temporary { get; set; }
 
-        public int? uses { get; set; }
+        [JsonProperty("uses")]
+        public int? Uses { get; set; }
     }
 }

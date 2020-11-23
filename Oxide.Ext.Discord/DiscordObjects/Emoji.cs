@@ -1,21 +1,30 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using System.Collections.Generic;
 
     public class Emoji
     {
-        public string id { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        public string name { get; set; }
-        
-        public List<string> roles { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-        public User user { get; set; }
+        [JsonProperty("roles")]
+        public List<string> Roles { get; set; }
 
-        public bool? require_colons { get; set; }
+        [JsonProperty("user")]
+        public User User { get; set; }
 
-        public bool? managed { get; set; }
+        [JsonProperty("require_colons")]
+        public bool? RequireColons { get; set; }
 
-        public bool? animated { get; set; }
+        [JsonProperty("managed")]
+        public bool? Managed { get; set; }
+
+        [JsonProperty("animated")]
+        public bool? Animated { get; set; }
     }
 }

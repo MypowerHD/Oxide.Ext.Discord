@@ -1,15 +1,20 @@
-﻿namespace Oxide.Ext.Discord.DiscordObjects
+﻿using Newtonsoft.Json;
+using System;
+using Oxide.Ext.Discord.REST;
+
+namespace Oxide.Ext.Discord.DiscordObjects
 {
-    using System;
-    using Oxide.Ext.Discord.REST;
 
     public class Invite
     {
-        public string code { get; set; }
+        [JsonProperty("code")]
+        public string Code { get; set; }
 
-        public Guild guild { get; set; }
+        [JsonProperty("guild")]
+        public Guild Guild { get; set; }
 
-        public Channel channel { get; set; }
+        [JsonProperty("channel")]
+        public Channel Channel { get; set; }
 
         public static void GetInvite(DiscordClient client, string inviteCode, Action<Invite> callback = null)
         {
@@ -18,12 +23,12 @@
 
         public void DeleteInvite(DiscordClient client, Action<Invite> callback = null)
         {
-            client.REST.DoRequest($"/invites/{code}", RequestMethod.DELETE, null, callback);
+            client.REST.DoRequest($"/invites/{Code}", RequestMethod.DELETE, null, callback);
         }
 
         public void AcceptInvite(DiscordClient client, Action<Invite> callback = null)
         {
-            client.REST.DoRequest($"/invites/{code}", RequestMethod.POST, null, callback);
+            client.REST.DoRequest($"/invites/{Code}", RequestMethod.POST, null, callback);
         }
     }
 }
